@@ -78,15 +78,38 @@
       font-weight: bold;
     }
 
-    .features {
+    /* .features {
       background-color: #111;
       padding: 4rem 0;
       box-shadow: 0 0 20px rgba(0,255,255,0.15);
-    }
+    } */
+     .features {
+  background: rgba(0, 0, 0, 0.3); /* semi-transparent black */
+  backdrop-filter: blur(10px); /* blur effect */
+  -webkit-backdrop-filter: blur(10px); /* Safari support */
+  padding: 4rem 0;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.15);
+  border-radius: 1rem;
+  border: 1px solid rgba(0, 255, 255, 0.1);
+}
+
 
     .features i {
       font-size: 2rem;
       color: #00FFFF;
+    }
+    .box{
+      box-shadow: 0 0 20px rgba(0,255,255,0.15);
+    }
+    .contract-address {
+      background: rgba(0, 0, 0, 0.3); /* semi-transparent black */
+  backdrop-filter: blur(10px); /* blur effect */
+  -webkit-backdrop-filter: blur(10px); /* Safari support */
+  padding: 4rem 0;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.15);
+  border-radius: 1rem;
+  border: 1px solid rgba(0, 255, 255, 0.1);
+
     }
 
     .carousel-section .card {
@@ -188,12 +211,28 @@
     <h2 class="text-info">Tokenomics</h2>
     <ul class="list-unstyled mt-4">
       <li class="pb-2">🔹 Total Supply: 1,000,000,000 $AIMX</li>
-      <li class="pb-2">🔹 10% Liquidity Pool</li> 
+      <li class="pb-2">🔹 20% Liquidity Pool</li> 
       <li class="pb-2">🔹 20% Ecosystem & Dev</li>
-      <li class="pb-2">🔹 10% Marketing</li>
-      <li class="pb-2">🔹 40% Community Rewards</li>
+      <li class="pb-2">🔹 15% Marketing</li>
+      <li class="pb-2">🔹 45% Community Rewards</li>
     </ul>
   </section>
+
+  <!-- Contract Address Section -->
+<section class="contract-address text-center py-5">
+  <div class="container">
+    <h2 class="text-info mb-3">Contract Address</h2>
+    <p class="mb-4">Use the contract address below to add $AIMX to your wallet:</p>
+    <div class="d-flex justify-content-center align-items-center gap-2 flex-wrap">
+      <code id="contractText" class=" box bg-dark text-info px-3 py-2 rounded">95qaSxsWq6vuiSVQriTxhKCTsLBsf3EcXh5LgVvMpump</code>
+      <button id="copyBtn" class="btn btn-outline-info">
+        <i class="bi bi-clipboard"></i> Copy
+      </button>
+    </div>
+    <small class="text-success mt-2 d-block" id="copyStatus" style="display: none;">Copied!</small>
+  </div>
+</section>
+
 
   <!-- Social Media Section -->
 <section class="socials text-center py-5">
@@ -291,5 +330,19 @@
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+  document.getElementById('copyBtn').addEventListener('click', function () {
+    const text = document.getElementById("contractText").innerText;
+    navigator.clipboard.writeText(text).then(() => {
+      const status = document.getElementById("copyStatus");
+      status.style.display = "block";
+      setTimeout(() => { status.style.display = "none"; }, 2000);
+    }).catch(err => {
+      console.error('Failed to copy!', err);
+      alert("Copy failed. Please try manually.");
+    });
+  });
+</script>
+
 </body>
 </html>
